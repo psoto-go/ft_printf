@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:39:25 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/10/29 13:53:40 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/10/29 14:55:13 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static int ft_print(char *c)
 	return(0);
 }
 
-int ft_comprueba(const char arg1, const char arg2, va_list args)
+int ft_check(const char arg1, const char arg2, va_list args)
 {
 	int res;
 
@@ -124,6 +124,8 @@ int ft_comprueba(const char arg1, const char arg2, va_list args)
 		ft_putnbr_fd(va_arg(args, int), res);
 	else if (arg1 == '%' && arg2 == 'i')
 		ft_putnbr_fd(va_arg(args, int), res);
+	else if (arg1 == '%' && arg2 == '%')
+		ft_putchar_fd('%', res);
 	return(res);
 	
 }
@@ -142,7 +144,8 @@ int ft_printf(const char *var, ...)
 	{
 		if(var[i] == '%')
 		{
-			res += ft_comprueba(var[i], var[i + 1], args);
+			res += ft_check
+		(var[i], var[i + 1], args);
 			i++;
 		}else
 		{
@@ -157,6 +160,6 @@ int ft_printf(const char *var, ...)
 
 int	main(){
 	printf("%s %d\n", "hello", 0);
-	ft_printf("%s %d\n", "hello", 0);
-	printf("%s %d\n", "hello", 0);
+	ft_printf("%s %d%%\n", "hello", 0);
+	printf("%s %d%%", "hello", 0);
 }
