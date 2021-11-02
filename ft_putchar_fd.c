@@ -6,13 +6,14 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:16:07 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/10/28 13:34:07 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:08:38 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
+	return (0);
 }

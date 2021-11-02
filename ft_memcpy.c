@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 12:02:08 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 14:07:26 by psoto-go         ###   ########.fr       */
+/*   Created: 2021/11/02 14:07:49 by psoto-go          #+#    #+#             */
+/*   Updated: 2021/11/02 14:07:56 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	*ft_memcpy(void *str1, const void *str2, size_t n)
 {
-	if (n > -2147483648 || n <= 2147483647)
-	{
-		if (n == -2147483648)
-		{
-			ft_putchar_fd('-', fd);
-			ft_putchar_fd('2', fd);
-			ft_putnbr_fd(147483648, fd);
-		}
-		else if (n >= 10)
-		{
-			ft_putnbr_fd(n / 10, fd);
-			ft_putnbr_fd(n % 10, fd);
-		}
-		else if (n < 0)
-		{
-			n = -n;
-			ft_putchar_fd('-', fd);
-			ft_putnbr_fd(n, fd);
-		}
-		else
-		{
-			ft_putchar_fd(n + '0', fd);
-		}
+	unsigned char	*temp1;
+	unsigned char	*temp2;
+	size_t			count;
+
+	temp1 = (unsigned char *)str1;
+	temp2 = (unsigned char *)str2;
+	count = 0;
+	if (str1 == NULL && str2 == NULL)
+		return (NULL);
+	while (count < n)
+	{	
+		temp1[count] = temp2[count];
+		count++;
 	}
+	return (str1);
 }

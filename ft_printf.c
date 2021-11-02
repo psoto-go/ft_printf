@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:39:25 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 13:17:17 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:26:02 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,34 +50,18 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 }
 
-void	ft_unsigputnbr_fd(int n, int fd)
+void	ft_unsigputnbr_fd(unsigned int n, int fd)
 {
-	if (n > -2147483648 || n <= 2147483647)
-	{
-		if (n == -2147483648)
-		{
-			ft_putchar_fd('-', fd);
-			ft_putchar_fd('2', fd);
-			ft_putnbr_fd(147483648, fd);
-		}
-		else if (n > 9)
+	if (n > 9)
 		{
 			ft_putnbr_fd(n / 10, fd);
 			ft_putnbr_fd(n % 10, fd);
 		}
-		else if (n < 0)
-		{
-			n = -n;
-			ft_putchar_fd('-', fd);
-			ft_putnbr_fd(n, fd);
-		}
-		else
+	else
 		{
 			ft_putchar_fd(n + '0', fd);
 		}
-	}
 }
-
 
 void	*ft_memcpy(void *str1, const void *str2, size_t n)
 {
@@ -150,7 +134,7 @@ int	ft_hexalen(int n)
 }
 
 
-char	*ft_decimaltohexadecimal(int n)
+char	*ft_detohe(int n, int mayus)
 {
 	int co;
 	int len;
@@ -158,16 +142,16 @@ char	*ft_decimaltohexadecimal(int n)
 	char *string;
 	
 	co = 0;
-	
 	len = ft_hexalen(n);
 	i = len - 1;
 	string = malloc((len + 1) * sizeof(char));
 	while (n != 0){
 		co = n % 16;
-
 		if(co < 10)
 			co += 48;
-		else if(co >= 10)
+		else if(co >= 10 && mayus == 0)
+			co += 87;
+		else if(co >= 10 && mayus == 1)
 			co += 55;
 		string[i--] = co;
 		n /= 16;
@@ -196,10 +180,12 @@ int ft_check(const char arg1, const char arg2, va_list args)
 		ft_putnbr_fd(va_arg(args, int), res);
 	else if (arg1 == '%' && arg2 == 'i')
 		ft_putnbr_fd(va_arg(args, int), res);
-	// else if (arg1 == '%' && arg2 == 'u')
-	// 	// ft_putnbr_fd(va_arg(args, unsigned int), res);
+	else if (arg1 == '%' && arg2 == 'u')
+		ft_unsigputnbr_fd(va_arg(args, unsigned int), res);
 	else if (arg1 == '%' && arg2 == 'x')
-		ft_write(ft_decimaltohexadecimal(va_arg(args, int)));
+		ft_write(ft_detohe(va_arg(args, int), 0));
+	else if (arg1 == '%' && arg2 == 'X')
+		ft_write(ft_detohe(va_arg(args, int), 1));
 	else if (arg1 == '%' && arg2 == '%')
 		ft_putchar_fd('%', res);
 	return(res);
@@ -231,17 +217,16 @@ int ft_printf(const char *var, ...)
 	return (res);
 }
 
-
-
-
 int	main(){
-	// void *a;
-	// a = "aa";
-	// printf("%X hola\n", 23423);
+	void *a;
+	a = "aa";
+	// printf("%p\n", a);
 	// ft_printf("%s hola\n", "3232");
 	// printf("%s %d%% hola\n", "hello", 0);
 	// // system("leaks ft_printf.c");
-	printf("%x\n", 460);
-	ft_printf("%x", 460);
+	// printf("%d\n", -2147483647);
+	// ft_printf("%d\n\n", -2147483647);
+	printf("%u\n", 23);
+	ft_printf("%u", 23);
 	return(0);
 }
