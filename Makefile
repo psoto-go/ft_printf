@@ -6,7 +6,7 @@
 #    By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/02 15:01:07 by psoto-go          #+#    #+#              #
-#    Updated: 2021/11/02 15:14:28 by psoto-go         ###   ########.fr        #
+#    Updated: 2021/11/02 21:29:46 by psoto-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,5 @@ fclean:			clean
 				$(RM) $(NAME)
 
 re:				fclean $(NAME)
-
-bonus:			$(OBJS)
-				ar rcs $(NAME) $(OBJS)
 
 .PHONY:			all clean fclean re
