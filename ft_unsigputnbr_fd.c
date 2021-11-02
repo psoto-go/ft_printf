@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 15:10:20 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 18:23:43 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/02 21:14:10 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		ft_unsigputnbr_fd(unsigned int n, int fd, int *res)
 {
-	*res = *res + 1;
 	if (n >= 10)
 		{
 			ft_unsigputnbr_fd(n / 10, fd, res);
@@ -22,6 +21,6 @@ void		ft_unsigputnbr_fd(unsigned int n, int fd, int *res)
 		}
 	else
 		{
-			ft_putchar_fd(n + '0', fd);
+			ft_putchar_fd(n + '0', fd, res);
 		}
 }

@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:39:25 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 19:44:25 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/02 21:19:56 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,13 @@ char	*ft_strdup(const char *src)
 }
 
 
-int	ft_putchar_fd(char c, int fd, int *res)
+void	ft_putchar_fd(char c, int fd, int *res)
 {
 	*res += 1;
 	write(fd, &c, 1);
-	return (1);
 }
 
-int ft_write(char *c, int *res, int flag)
+void	 ft_write(char *c, int *res, int flag)
 {
 	char 	*aux;
 	int		i;
@@ -120,8 +119,7 @@ int ft_write(char *c, int *res, int flag)
 	free(aux);
 	if (flag == 1)
 		free(c);
-	return(0);
-}
+	}
 
 int	ft_hexalen(int n)
 {
@@ -234,7 +232,7 @@ int	main(){
 	// // system("leaks ft_printf.c");
 	// printf("%d\n", -2147483647);
 	// ft_printf("%d\n\n", -2147483647);
-	printf(" %x \n", -101);
-	ft_printf(" %x ", -101);
+	printf(" %x \n", 32);
+	ft_printf(" %x ", 32);
 	return(0);
 }
