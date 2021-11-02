@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:39:25 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/10/29 20:18:56 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/02 13:17:17 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 }
 
-void	ft_unputnbr_fd(int n, int fd)
+void	ft_unsigputnbr_fd(int n, int fd)
 {
 	if (n > -2147483648 || n <= 2147483647)
 	{
@@ -119,7 +119,7 @@ int	ft_putchar_fd(char c, int fd)
 	return (0);
 }
 
-static int ft_print(char *c)
+int ft_write(char *c)
 {
 	char 	*aux;
 	int		i;
@@ -134,6 +134,49 @@ static int ft_print(char *c)
 	return(0);
 }
 
+int	ft_hexalen(int n)
+{
+	int co;
+	int count;
+	
+	co = 0;
+	count = 1;
+	while (n >= 16){
+		co = n / 16;
+		n = co;
+		count++;
+	}
+	return (count);
+}
+
+
+char	*ft_decimaltohexadecimal(int n)
+{
+	int co;
+	int len;
+	int i;
+	char *string;
+	
+	co = 0;
+	
+	len = ft_hexalen(n);
+	i = len - 1;
+	string = malloc((len + 1) * sizeof(char));
+	while (n != 0){
+		co = n % 16;
+
+		if(co < 10)
+			co += 48;
+		else if(co >= 10)
+			co += 55;
+		string[i--] = co;
+		n /= 16;
+		
+	}
+	string[len] = '\0';
+	return (string);
+}
+
 int ft_check(const char arg1, const char arg2, va_list args)
 {
 	int res;
@@ -142,19 +185,21 @@ int ft_check(const char arg1, const char arg2, va_list args)
 	if (arg1 == '%' && arg2 == 'c')
 		ft_putchar_fd(va_arg(args, int), res);
 	else if (arg1 == '%' && arg2 == 's')
-		res = ft_print(va_arg(args, char *));
-	else if (arg1 == '%' && arg2 == 'p')
-	{
-		ft_putnbr_fd(va_arg(args, unsigned long), res);
-		// printf("%p", va_arg(args, char));
-		// write(tmp[0], va_arg(args, char), 1);
-	}
+		ft_write(va_arg(args, char *));
+	// else if (arg1 == '%' && arg2 == 'p')
+	// {
+	// 	ft_putnbr_fd(va_arg(args, unsigned long), res);
+	// 	// printf("%p", va_arg(args, char));
+	// 	// write(tmp[0], va_arg(args, char), 1);
+	// }
 	else if (arg1 == '%' && arg2 == 'd')
 		ft_putnbr_fd(va_arg(args, int), res);
 	else if (arg1 == '%' && arg2 == 'i')
 		ft_putnbr_fd(va_arg(args, int), res);
-	else if (arg1 == '%' && arg2 == 'u')
-		ft_putnbr_fd(va_arg(args, unsigned int), res);
+	// else if (arg1 == '%' && arg2 == 'u')
+	// 	// ft_putnbr_fd(va_arg(args, unsigned int), res);
+	else if (arg1 == '%' && arg2 == 'x')
+		ft_write(ft_decimaltohexadecimal(va_arg(args, int)));
 	else if (arg1 == '%' && arg2 == '%')
 		ft_putchar_fd('%', res);
 	return(res);
@@ -175,13 +220,10 @@ int ft_printf(const char *var, ...)
 	{
 		if(var[i] == '%')
 		{
-			res += ft_check
-		(var[i], var[i + 1], args);
+			res += ft_check(var[i], var[i + 1], args);
 			i++;
 		}else
-		{
-			write(1, &var[i], 1);
-		}
+			write(res, &var[i], 1);
 		i++;
 		
 	}
@@ -189,13 +231,17 @@ int ft_printf(const char *var, ...)
 	return (res);
 }
 
+
+
+
 int	main(){
-	void *a;
-	a = "aa";
-	printf("%u\n", -3232);
-	ft_printf("%u\n", -3232);
-	printf("%s %d%%\n", "hello", 0);
-	// system("leaks ft_printf.c");
-	getchar();
+	// void *a;
+	// a = "aa";
+	// printf("%X hola\n", 23423);
+	// ft_printf("%s hola\n", "3232");
+	// printf("%s %d%% hola\n", "hello", 0);
+	// // system("leaks ft_printf.c");
+	printf("%x\n", 460);
+	ft_printf("%x", 460);
 	return(0);
 }
