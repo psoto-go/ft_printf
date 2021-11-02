@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:39:25 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 14:26:02 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/02 19:44:25 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,44 +22,44 @@ size_t	ft_strlen(const char *s)
 	return (count);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void		ft_putnbr_fd(int n, int fd, int *res)
 {
 	if (n > -2147483648 || n <= 2147483647)
 	{
 		if (n == -2147483648)
 		{
-			ft_putchar_fd('-', fd);
-			ft_putchar_fd('2', fd);
-			ft_putnbr_fd(147483648, fd);
+			ft_putchar_fd('-', fd, res);
+			ft_putchar_fd('2', fd, res);
+			ft_putnbr_fd(147483648, fd, res);
 		}
 		else if (n >= 10)
 		{
-			ft_putnbr_fd(n / 10, fd);
-			ft_putnbr_fd(n % 10, fd);
+			ft_putnbr_fd(n / 10, fd, res);
+			ft_putnbr_fd(n % 10, fd, res);
 		}
 		else if (n < 0)
 		{
 			n = -n;
-			ft_putchar_fd('-', fd);
-			ft_putnbr_fd(n, fd);
+			ft_putchar_fd('-', fd, res);
+			ft_putnbr_fd(n, fd, res);
 		}
 		else
 		{
-			ft_putchar_fd(n + '0', fd);
+			ft_putchar_fd(n + '0', fd, res);
 		}
 	}
 }
 
-void	ft_unsigputnbr_fd(unsigned int n, int fd)
+void		ft_unsigputnbr_fd(unsigned int n, int fd, int *res)
 {
-	if (n > 9)
+	if (n >= 10)
 		{
-			ft_putnbr_fd(n / 10, fd);
-			ft_putnbr_fd(n % 10, fd);
+			ft_unsigputnbr_fd(n / 10, fd, res);
+			ft_unsigputnbr_fd(n % 10, fd, res);
 		}
 	else
 		{
-			ft_putchar_fd(n + '0', fd);
+			ft_putchar_fd(n + '0', fd, res);
 		}
 }
 
@@ -97,13 +97,14 @@ char	*ft_strdup(const char *src)
 }
 
 
-int	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd, int *res)
 {
+	*res += 1;
 	write(fd, &c, 1);
-	return (0);
+	return (1);
 }
 
-int ft_write(char *c)
+int ft_write(char *c, int *res, int flag)
 {
 	char 	*aux;
 	int		i;
@@ -114,7 +115,11 @@ int ft_write(char *c)
 	{
 		write(1, &aux[i], 1);
 		i++;
+		*res += 1;
 	}
+	free(aux);
+	if (flag == 1)
+		free(c);
 	return(0);
 }
 
@@ -145,6 +150,10 @@ char	*ft_detohe(int n, int mayus)
 	len = ft_hexalen(n);
 	i = len - 1;
 	string = malloc((len + 1) * sizeof(char));
+	if (!string)
+		return (0);
+	if (n == 0)
+		string[len - 1] = '0';
 	while (n != 0){
 		co = n % 16;
 		if(co < 10)
@@ -155,7 +164,6 @@ char	*ft_detohe(int n, int mayus)
 			co += 55;
 		string[i--] = co;
 		n /= 16;
-		
 	}
 	string[len] = '\0';
 	return (string);
@@ -167,9 +175,9 @@ int ft_check(const char arg1, const char arg2, va_list args)
 
 	res = 0;
 	if (arg1 == '%' && arg2 == 'c')
-		ft_putchar_fd(va_arg(args, int), res);
+		ft_putchar_fd(va_arg(args, int), 1, &res);
 	else if (arg1 == '%' && arg2 == 's')
-		ft_write(va_arg(args, char *));
+		ft_write(va_arg(args, char *), &res, 0);
 	// else if (arg1 == '%' && arg2 == 'p')
 	// {
 	// 	ft_putnbr_fd(va_arg(args, unsigned long), res);
@@ -177,19 +185,18 @@ int ft_check(const char arg1, const char arg2, va_list args)
 	// 	// write(tmp[0], va_arg(args, char), 1);
 	// }
 	else if (arg1 == '%' && arg2 == 'd')
-		ft_putnbr_fd(va_arg(args, int), res);
+		ft_putnbr_fd(va_arg(args, int), 1, &res);
 	else if (arg1 == '%' && arg2 == 'i')
-		ft_putnbr_fd(va_arg(args, int), res);
+		ft_putnbr_fd(va_arg(args, int), 1, &res);
 	else if (arg1 == '%' && arg2 == 'u')
-		ft_unsigputnbr_fd(va_arg(args, unsigned int), res);
+		ft_unsigputnbr_fd(va_arg(args, unsigned int), 1, &res);
 	else if (arg1 == '%' && arg2 == 'x')
-		ft_write(ft_detohe(va_arg(args, int), 0));
+		ft_write(ft_detohe(va_arg(args, int), 0), &res, 1);
 	else if (arg1 == '%' && arg2 == 'X')
-		ft_write(ft_detohe(va_arg(args, int), 1));
+		ft_write(ft_detohe(va_arg(args, int), 1), &res, 1);
 	else if (arg1 == '%' && arg2 == '%')
-		ft_putchar_fd('%', res);
-	return(res);
-	
+		ft_putchar_fd('%', 1, &res);
+	return (res);
 }
 
 int ft_printf(const char *var, ...)
@@ -201,7 +208,6 @@ int ft_printf(const char *var, ...)
 	va_start( args, var );
 	i = 0;
 	res = 0;
-
 	while (var[i] != '\0')
 	{
 		if(var[i] == '%')
@@ -209,9 +215,11 @@ int ft_printf(const char *var, ...)
 			res += ft_check(var[i], var[i + 1], args);
 			i++;
 		}else
-			write(res, &var[i], 1);
+		{
+			write(1, &var[i], 1);
+			res++;
+		}
 		i++;
-		
 	}
 	va_end(args);
 	return (res);
@@ -226,7 +234,7 @@ int	main(){
 	// // system("leaks ft_printf.c");
 	// printf("%d\n", -2147483647);
 	// ft_printf("%d\n\n", -2147483647);
-	printf("%u\n", 23);
-	ft_printf("%u", 23);
+	printf(" %x \n", -101);
+	ft_printf(" %x ", -101);
 	return(0);
 }

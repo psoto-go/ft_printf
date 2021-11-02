@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:16:07 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 14:08:38 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/02 18:36:18 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 int	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
-	return (0);
+	return (1);
 }
