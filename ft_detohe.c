@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:09:38 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/03 11:08:16 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:19:16 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ char	*ft_detohe(unsigned long int n, int mayus)
 	len = ft_hexalen(n);
 	i = len - 1;
 	string = malloc((len + 1) * sizeof(char));
+	if (!string)
+		return (0);
+	if (n == 0)
+		string[len - 1] = '0';
 	while (n != 0)
 	{
 		co = n % 16;
