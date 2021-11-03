@@ -6,13 +6,13 @@
 #    By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/02 15:01:07 by psoto-go          #+#    #+#              #
-#    Updated: 2021/11/03 13:26:36 by psoto-go         ###   ########.fr        #
+#    Updated: 2021/11/03 16:06:12 by psoto-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS			=	ft_detohe.c ft_hexalen.c ft_memcpy.c ft_printf.c ft_strlcat.c ft_ptrtohex.c \
 					ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_ptrtohex.c ft_strlcpy.c \
-					ft_putstr_fd.c ft_strdup.c ft_strlen.c ft_write.c ft_unsigputnbr_fd.c
+					ft_putstr_fd.c ft_strdup.c ft_strlen.c ft_write.c ft_unsigputnbr_fd.c ft_divide.c
 
 OBJS			= $(SRCS:.c=.o)
 
