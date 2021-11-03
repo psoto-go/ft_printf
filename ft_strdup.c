@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:08:20 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/03 15:08:03 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:56:08 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *src)
 	size_t			len;
 
 	len = ft_strlen(src) + 1;
+	if (len == 1)
+		return (NULL);
 	aux = (char *)malloc(len * sizeof(char));
 	if (aux == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:08:53 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/03 15:18:51 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:56:18 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ void	ft_write(char *c, int *res, int flag)
 		aux = ft_strdup("(null)");
 	else
 		aux = ft_strdup(c);
+	if (!aux)
+		return ;
 	i = 0;
 	while (aux[i] != '\0')
 	{
 		write(1, &aux[i], 1);
 		i++;
 		*res += 1;
+		
 	}
 	free(aux);
 	if (flag == 1)

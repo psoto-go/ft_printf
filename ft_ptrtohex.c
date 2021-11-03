@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 12:39:06 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/03 15:16:33 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:36:22 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_ptrtohex(void *p)
 	int		len;
 
 	ptr = ft_detohe((unsigned long int) p, 0);
-	aux = malloc(sizeof(char) * (*ptr + 3));
+	aux = malloc(sizeof(char) * (ft_strlen(ptr) + 3));
 	if (!aux)
 		return (0);
 	len = ft_strlen(ptr);

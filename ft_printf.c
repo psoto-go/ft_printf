@@ -6,13 +6,13 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:39:25 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/03 16:19:08 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 17:17:11 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_check(const char arg1, const char arg2, va_list args)
+static int	ft_check(const char arg1, const char arg2, va_list args)
 {
 	int	res;
 
