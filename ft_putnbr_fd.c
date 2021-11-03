@@ -6,13 +6,13 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 12:02:08 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 21:13:48 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 11:11:14 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_putnbr_fd(int n, int fd, int *res)
+void	ft_putnbr_fd(int n, int fd, int *res)
 {
 	if (n > -2147483648 || n <= 2147483647)
 	{

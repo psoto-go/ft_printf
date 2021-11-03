@@ -6,24 +6,29 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:08:53 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 15:18:45 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 11:39:14 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_write(char *c)
+void ft_write(char *c, int *res, int flag)
 {
 	char 	*aux;
 	int		i;
 
-	aux = ft_strdup(c);
+	if (c == NULL)
+		aux = ft_strdup("(null)");
+	else
+		aux = ft_strdup(c);
 	i = 0;
 	while(aux[i] != '\0')
 	{
 		write(1, &aux[i], 1);
 		i++;
+		*res += 1;
 	}
 	free(aux);
-	return(0);
+	if (flag == 1)
+		free(c);
 }

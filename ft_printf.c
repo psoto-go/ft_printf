@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:39:25 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 21:19:56 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 11:36:53 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,10 @@ void	 ft_write(char *c, int *res, int flag)
 	char 	*aux;
 	int		i;
 
-	aux = ft_strdup(c);
+	if (c == NULL)
+		aux = ft_strdup("(null)");
+	else
+		aux = ft_strdup(c);
 	i = 0;
 	while(aux[i] != '\0')
 	{
@@ -121,7 +124,7 @@ void	 ft_write(char *c, int *res, int flag)
 		free(c);
 	}
 
-int	ft_hexalen(int n)
+int	ft_hexalen(unsigned long int n)
 {
 	int co;
 	int count;
@@ -137,7 +140,7 @@ int	ft_hexalen(int n)
 }
 
 
-char	*ft_detohe(int n, int mayus)
+char	*ft_detohe(unsigned long int n, int mayus)
 {
 	int co;
 	int len;
@@ -189,9 +192,9 @@ int ft_check(const char arg1, const char arg2, va_list args)
 	else if (arg1 == '%' && arg2 == 'u')
 		ft_unsigputnbr_fd(va_arg(args, unsigned int), 1, &res);
 	else if (arg1 == '%' && arg2 == 'x')
-		ft_write(ft_detohe(va_arg(args, int), 0), &res, 1);
+		ft_write(ft_detohe(va_arg(args, unsigned int), 0), &res, 1);
 	else if (arg1 == '%' && arg2 == 'X')
-		ft_write(ft_detohe(va_arg(args, int), 1), &res, 1);
+		ft_write(ft_detohe(va_arg(args, unsigned int), 1), &res, 1);
 	else if (arg1 == '%' && arg2 == '%')
 		ft_putchar_fd('%', 1, &res);
 	return (res);
@@ -223,16 +226,16 @@ int ft_printf(const char *var, ...)
 	return (res);
 }
 
-int	main(){
-	void *a;
-	a = "aa";
-	// printf("%p\n", a);
-	// ft_printf("%s hola\n", "3232");
-	// printf("%s %d%% hola\n", "hello", 0);
-	// // system("leaks ft_printf.c");
-	// printf("%d\n", -2147483647);
-	// ft_printf("%d\n\n", -2147483647);
-	printf(" %x \n", 32);
-	ft_printf(" %x ", 32);
-	return(0);
-}
+// int	main(){
+// 	void *a;
+// 	a = "aa";
+// 	// printf("%p\n", a);
+// 	// ft_printf("%s hola\n", "3232");
+// 	// printf("%s %d%% hola\n", "hello", 0);
+// 	// // system("leaks ft_printf.c");
+// 	// printf("%d\n", -2147483647);
+// 	// ft_printf("%d\n\n", -2147483647);
+// 	printf(" NULL %s NULL \n", NULL);
+// 	ft_printf(" NULL %s NULL ", NULL);
+// 	return(0);
+// }

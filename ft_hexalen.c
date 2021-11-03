@@ -6,13 +6,13 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:09:15 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 14:09:24 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 11:03:42 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_hexalen(int n)
+int	ft_hexalen(unsigned long int n)
 {
 	int co;
 	int count;

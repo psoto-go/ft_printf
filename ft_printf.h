@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:43:33 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/02 21:18:03 by psoto-go         ###   ########.fr       */
+/*   Updated: 2021/11/03 11:38:13 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-char	*ft_detohe(int n, int mayus);
+char	*ft_detohe(unsigned long int n, int mayus);
 
-int		ft_hexalen(int n);
+int		ft_hexalen(unsigned long int n);
 
 void	*ft_memcpy(void *str1, const void *str2, size_t n);
 
