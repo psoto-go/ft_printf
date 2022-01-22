@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putchar_fd_pointer.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:16:07 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/03 15:08:14 by psoto-go         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:44:18 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar_fd(char c, int fd, int *res)
+void	ft_putchar_fd_pointer(char c, int fd, int *res)
 {
 	*res += 1;
 	write(fd, &c, 1);

@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 10:43:33 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/03 16:08:50 by psoto-go         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:44:59 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	*ft_memcpy(void *str1, const void *str2, size_t n);
 
 int		ft_printf(const char *var, ...);
 
-void	ft_putchar_fd(char c, int fd, int *res);
+void	ft_putchar_fd_pointer(char c, int fd, int *res);
 
 void	ft_putendl_fd(char *s, int fd);
 
-void	ft_putnbr_fd(int n, int fd, int *res);
+void	ft_putnbr_fd_pointer(int n, int fd, int *res);
 
 void	ft_putstr_fd(char *s, int fd);
 

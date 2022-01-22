@@ -6,7 +6,7 @@
 /*   By: psoto-go <psoto-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 15:39:25 by psoto-go          #+#    #+#             */
-/*   Updated: 2021/11/03 17:17:11 by psoto-go         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:45:38 by psoto-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ static int	ft_check(const char arg1, const char arg2, va_list args)
 
 	res = 0;
 	if (arg1 == '%' && arg2 == 'c')
-		ft_putchar_fd(va_arg(args, int), 1, &res);
+		ft_putchar_fd_pointer(va_arg(args, int), 1, &res);
 	else if (arg1 == '%' && arg2 == 's')
 		ft_write(va_arg(args, char *), &res, 0);
 	else if (arg1 == '%' && arg2 == 'p')
 		ft_write(ft_ptrtohex(va_arg(args, void *)), &res, 1);
 	else if (arg1 == '%' && arg2 == 'd')
-		ft_putnbr_fd(va_arg(args, int), 1, &res);
+		ft_putnbr_fd_pointer(va_arg(args, int), 1, &res);
 	else if (arg1 == '%' && arg2 == 'i')
-		ft_putnbr_fd(va_arg(args, int), 1, &res);
+		ft_putnbr_fd_pointer(va_arg(args, int), 1, &res);
 	else if (arg1 == '%' && arg2 == 'u')
 		ft_unsigputnbr_fd(va_arg(args, unsigned int), 1, &res);
 	else if (arg1 == '%' && arg2 == 'x')
@@ -34,7 +34,7 @@ static int	ft_check(const char arg1, const char arg2, va_list args)
 	else if (arg1 == '%' && arg2 == 'X')
 		ft_write(ft_detohe(va_arg(args, unsigned int), 1), &res, 1);
 	else if (arg1 == '%' && arg2 == '%')
-		ft_putchar_fd('%', 1, &res);
+		ft_putchar_fd_pointer('%', 1, &res);
 	return (res);
 }
 
